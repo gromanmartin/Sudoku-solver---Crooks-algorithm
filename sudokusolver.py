@@ -80,32 +80,25 @@ def assign_candidate_sets_to_cells(sudoku: np.array):
     return set_list
 
 
-def compare_sets(l:list, n: int, *args: set):
-    combs = itertools.combinations(l, n)
-
-
-
 def find_preemptive_sets(candidate_set_list: list):
-    preemptive_set_list_row = []
-    def find_in_rows():
-        for row in candidate_set_list:
-            for a, b in itertools.combinations(row, 2):
-                if a == b:
-                    preemptive_set_list_row.append(a)
-                else:
-                    preemptive_set_list_row.append(set())
-    find_in_rows()
-    return preemptive_set_list_row
+    """Given candidate set list (list of sets either in row, column or square), find the preemptive set. Stop after finding the first one.
 
-    # def find_singleton():
-    #     candidates_intersection = row_candidates.intersection(col_candidates, square_candidates)
-    #     if len(candidates_intersection) == 0:
-    #         print('No solution possible.')
-    #     elif len(candidates_intersection) == 1:
-    #         sudoku[row_number, col_number] = next(iter(candidates_intersection))
-    #     else:
-    #         pass
-    #     pass
+    Args:
+        candidate_set_list (list): List of sets, representing either row, column or square.
+
+    Returns:
+        [set]: Preemptive set.
+    """
+    preemptive_set = set()
+    counter = collections.Counter(frozenset(s) for s in candidate_set_list)
+    set_counts = [[set(x), len(set(x)), count] for x, count in zip(counter.keys(), counter.values())]
+    for el in set_counts:
+        if el[1] == el[2] and el[1] > 0:
+            preemptive_set = el[0]
+            print('Preemptive set found!')
+            break
+    return preemptive_set
+
 
 
 a = assign_candidate_sets_to_cells(example)
