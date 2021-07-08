@@ -113,10 +113,17 @@ def apply_occupancy_theorem(list_with_preemptive_set: list, preemptive_set: set)
 
 
 def fill_in_singletons(sudoku: np.array, sudoku_with_candidates: list):
-    for cellset in sudoku_with_candidates:
-        if len(cellset) == 1:
-            sudoku
-    pass
+    """Find single item sets in the sudoku list with candidates. Fill in the values into appropriate cells.
+
+    Args:
+        sudoku (np.array): Sudoku to be solved
+        sudoku_with_candidates (list): List of sets with candidate numbers for each sets.
+    """
+    for row in range(9):
+        for col in range(9):
+            if len(sudoku_with_candidates[row][col]) == 1:
+                sudoku[row, col] = next(iter(sudoku_with_candidates[row][col]))
+    
 
 
 
