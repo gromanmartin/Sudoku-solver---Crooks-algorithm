@@ -100,6 +100,16 @@ def find_preemptive_sets(candidate_set_list: list):
     return preemptive_set
 
 
+def apply_occupancy_theorem(list_with_preemptive_set: list, preemptive_set: set):
+    for cellset in list_with_preemptive_set:
+        if cellset != preemptive_set:
+            cellset -= preemptive_set
+
+
+
 
 a = assign_candidate_sets_to_cells(example)
-print(a[0])
+print(a[1])
+b = find_preemptive_sets(a[1])
+apply_occupancy_theorem(a[1], b)
+print(a[1])
