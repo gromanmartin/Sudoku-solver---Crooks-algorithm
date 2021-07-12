@@ -1,1 +1,1 @@
-Sudoku solver implemented according to Crook's algorithm as described here - http://pi.math.cornell.edu/~mec/Summer2009/meerkamp/Site/Solving_any_Sudoku_II.html
+Sudoku solver implemented according to Crook's algorithm as described here - http://www.ams.org/notices/200904/tx090400460p.pdf
